@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ConvertPDFGeneric()
+comment1.params=pdfNewFile\ rs
+comment1.target=boolean\ convert(java.io.File,\ java.sql.ResultSet)
+comment1.text=\r\n\ @param\ pdfNewFile\ Nombre\ del\ archivo\ a\ ser\ creado,en\ formato\ PDF.\r\n\ @param\ rs\ Objeto\ ResultSet,\ con\ registros.\r\n\ @return\ Boolean\ False\ si\ no\ se\ ha\ podido\ completar\ la\ operacion,\ o\ si\ se\ lanza\ alguna\ excepcion.\r\n\ @throws\ FileNotFoundException\ Lanza\ FileNotFoundException,\ Si\ el\ archivo\ no\ se\ ha\ podido\ encontrar.\r\n\ @throws\ DocumentException\ Lanza\ DocumentException,\ si\ no\ se\ ha\ podido\ abrir\ el\ archivo\ deseado.\r\n\ @throws\ MalformedURLException\ Lanza\ MalformedURLException,\ si\ se\ encuentra\ erronea\ la\ URL.\r\n\ @throws\ Exception\ Exception.\r\n
+numComments=2

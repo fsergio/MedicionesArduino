@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ConnectorFirebird()
+comment0.text=\r\nConstructor\ ConnectorFirebird\ sin\ argumentos.\r\n\ <ul>\r\n\ <li>Debe\ tener\ cuidado,\ conectese\ con\ los\ datos\ de\ conexion\ previamente\ establecidos.\r\n\ </ul>\r\n\ @since\ \ \ \ \ 1.0\r\n
+comment1.params=driver\ protocol\ port\ bd\ encoding\ user\ pass
+comment1.target=ConnectorFirebird(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\nConstructor\ ConnectorFirebird\ con\ argumentos.\r\n\ <ul>\r\n\ <li>Aqui\ es\ aconsejable\ preestablecer\ los\ datos\ de\ conexion.\r\n\ </ul>\r\n\ @param\ driver\ \ \ \ org.firebirdsql.jdbc.FBDriver\r\n\ @param\ protocol\ \ jdbc\:firebirdsql\r\n\ @param\ port\ \ localhost/3050\ (usted\ puede\ cambiar\ el\ puerto\ que\ desee,\ por\ defecto\ firebird\ escucha\ en\ 3050).\r\n\ @param\ bd\ \ nombre\ de\ su\ base\ de\ datos.\r\n\ @param\ user\ \ nombre\ de\ usuario\ con\ privilegios\ para\ su\ conexion\ con\ la\ base\ de\ datos.\r\n\ @param\ encoding\ \ en\ firebird\ 3.0,\ debe\ abrir\ archivo\ de\ configuracion\ firebird.conf(como\ administrador)\r\n\ en\ ruta\ de\ instalacion.\ modificar\ encoding\=NONE-\ Aqui\ puede\ luego\ utilizar\ ?encoding\=NONE(como\ argumento).\r\n\ @param\ pass\ \ constrase\u00F1a\ de\ usuario\ con\ privilegios\ para\ su\ conexion\ con\ la\ base\ de\ datos.\r\n\ @since\ \ \ \ \ 1.0\r\n
+comment2.params=
+comment2.target=boolean\ connect()
+comment2.text=\r\nMetodo\ especifico\ para\ conexion\ con\ la\ base\ de\ datos\ Firebird\ 3.0.\r\n\ <ul>\r\n\ <li>Debe\ tener\ cuidado,\ conectese\ con\ los\ datos\ de\ conexion\ previamente\ establecidos.\r\n\ </ul>\r\n\ @return\ true\ si\ se\ ha\ podido\ establecer\ la\ conexion\ con\ normalidad.\r\n\ @throws\ SQLEception\ \ Si\ falla\ algun\ dato\ de\ conexion\ con\ la\ base\ de\ datos.\r\n\ @throws\ ClassNotFoundException\ \ \ Si\ falla\ la\ carga\ del\ driver\ odbc/jdbc(firebird),\ etc.\r\n\ @since\ \ \ \ \ 1.0\r\n
+numComments=3

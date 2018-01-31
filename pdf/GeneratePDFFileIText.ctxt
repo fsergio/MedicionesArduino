@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=pdfNewFile
+comment0.target=void\ createPDF(java.io.File)
+comment0.text=\r\n\ We\ create\ a\ PDF\ document\ with\ iText\ using\ different\ elements\ to\ learn\ \r\n\ to\ use\ this\ library.\r\n\ Creamos\ un\ documento\ PDF\ con\ iText\ usando\ diferentes\ elementos\ para\ aprender\ \r\n\ a\ usar\ esta\ librer\u00EDa.\r\n\ @param\ pdfNewFile\ \ <code>String</code>\ \r\n\ \ \ \ \ \ pdf\ File\ we\ are\ going\ to\ write.\ \r\n\ \ \ \ \ \ Fichero\ pdf\ en\ el\ que\ vamos\ a\ escribir.\ \r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\r\n\ @param\ args\ the\ command\ line\ arguments\r\n
+numComments=2

@@ -1,0 +1,125 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <style>
+    #panell{
+     margin-top: 100px;
+     padding: 0px;
+   }
+   #loginbtn{
+     float: right;
+     margin-bottom: 10px;
+     margin-right: 10px;
+   }
+   #title{
+     background-color: #2bbbad;
+     color: white;
+     padding: 8px;
+     margin-top: 0px
+   }
+   form{
+     padding:0px;
+     border-radius: 3px;
+     box-sizing: border-box;
+   }
+   #username,#password{
+    margin-left: 20px;
+    margin-right: 20px;
+   }
+   #checkbox{
+    margin-left: 30px;
+   }
+   
+   #alert_box {
+		padding-left: 300px;
+	}
+	
+	.icon_style{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		font-size: 20px;
+		color: white;
+		cursor:pointer; 
+	}
+	
+  </style>
+</head>
+
+<body>
+    <div class="container">
+      <div class="row">
+
+          <div class="col s6 offset-s3 z-depth-1" id="panell">
+            <h5 id="title">Ingreso al sistema 'Mediciones'</h5>
+            <form>
+
+            <div class="input-field" id="username">
+              <input id="acc" type="text" class="validate">
+              <label for="username">Username</label>
+          </div>
+          <div class="input-field" id="password">
+            <input id="pass" type="password" class="validate">
+            <label for="password">Password</label>
+        </div>
+        <a class="waves-effect waves-light btn" id="loginbtn" onclick="getData()">Login</a>
+        
+        </form>
+        </div>
+      </div>
+    </div>
+	<!-- INICIO ALERT -->
+		<div class="row" id="alert_box" hidden>
+		  <div class="col s6 m10">
+			<div class="card red darken-1">
+			  <div class="row">
+				<div class="col s12 m10">
+				  <div id="message" class="card-content white-text"></div>
+			  </div>
+			  <div class="col s12 m2">
+				<i class="small material-icons icon_style" id="alert_close" aria-hidden="true">close</i>
+			  </div>
+			</div>
+		   </div>
+		  </div>
+		</div>
+	<!-- FIN ALERT -->
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+	function getData(){
+		var acc = $('#acc').val();
+		var pass = $('#pass').val();
+		var spl = "/";
+		
+		//var user = spl.concat(acc, spl, pass);
+    var user = acc.concat(spl, pass);
+		//console.log(user);
+		
+		$.ajax({
+		url: 'LoginServlet',
+		type: 'POST',
+		data: {user:user},
+		success: function(response) {
+			if (response['Result'] == 'OK'){
+				$('#alert_box').removeAttr('hidden');
+				$('#message').html('<p>Redireccionando...</p>')
+				window.setTimeout(function(){
+					window.location.replace('index.html');
+				}, 3000);
+			} else {
+				$('#alert_box').removeAttr('hidden');
+				$('#message').html('<p>Los datos ingresados son incorrectos.</p>')
+			}
+		}
+	});
+	}
+</script>

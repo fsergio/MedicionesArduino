@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Usuario()
+comment1.params=nombreUsuario
+comment1.target=Usuario(java.lang.String)
+comment2.params=nombreUsuario\ idUsuario
+comment2.target=Usuario(java.lang.String,\ int)
+comment3.params=nombreUsuario\ idUsuario\ pwdUsuario
+comment3.target=Usuario(java.lang.String,\ int,\ java.lang.String)
+comment3.text=\r\n\ Constructor\ de\ la\ clase\ Usuario.\r\n\ @param\ nombreUsuario\ Nombre\ de\ usuario.\r\n\ @param\ idUsuario\ Identificador\ de\ usuario.\r\n\ @param\ pwdUsuario\ contrase\u00F1a\ de\ usuario.\r\n\ @author\ \ \ \ \ \ Lazzaroni\ Gonzalo\r\n\ @author\ \ \ \ \ \ Fernandez\ Sergio\r\n\ @version\ \ \ \ \ %I%,\ %G%\r\n\ @since\ \ \ \ \ \ \ 1.0\r\n
+comment4.params=nombreUsuario
+comment4.target=void\ setNombreUsuario(java.lang.String)
+comment5.params=idUsuario
+comment5.target=void\ setIdUsuario(int)
+comment6.params=pwdUsuario
+comment6.target=void\ setPwdUsuario(java.lang.String)
+comment7.params=
+comment7.target=java.lang.String\ getNombreUsuario()
+comment8.params=
+comment8.target=int\ getIdUsuario()
+comment9.params=
+comment9.target=java.lang.String\ getPwdUsuario()
+numComments=10

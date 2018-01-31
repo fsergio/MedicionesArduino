@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=request\ response
+comment0.target=void\ processRequest(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment0.text=\r\n\ Procesamiento\ de\ ambas\ peticiones\ HTTP\r\n\ <code>GET</code>\ y\r\n\ <code>POST</code>\ metodos.\r\n\ @param\ request\ servlet\ request.\r\n\ @param\ response\ servlet\ response.\r\n\ @throws\ ServletException\ si\ un\ servlet\ en\ especifico\ falla.\r\n\ @throws\ IOException\ si\ hubo\ algun\ tipo\ de\ error\ de\ I/O\ File.\r\n
+comment1.params=request
+comment1.target=java.lang.String\ getStringFromRequest(javax.servlet.http.HttpServletRequest)
+comment1.text=\r\n\ No\ utilizar\ getParameter()\ antes\ de\ llamar\ a\ este\ metodo\!\r\n\ Si\ se\ obtiene\ toda\ la\ peticion\ enviada\ por\ el\ cliente,\ no\ puede\ \r\n\ usarse\ luego\ getParameter()\r\n
+comment2.params=request\ response
+comment2.target=void\ doGet(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment2.text=\r\n\ Handles\ de\ HTTP\r\n\ <code>GET</code>\ metodo.\r\n\r\n\ @param\ request\ servlet\ request\r\n\ @param\ response\ servlet\ response\r\n\ @throws\ ServletException\ si\ un\ servlet\ en\ especifico\ falla.\r\n\ @throws\ IOException\ si\ hubo\ algun\ tipo\ de\ error\ de\ I/O\ File\r\n
+comment3.params=request\ response
+comment3.target=void\ doPost(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment3.text=\r\n\ Handles\ de\ HTTP\r\n\ <code>POST</code>\ metodo.\r\n\r\n\ @param\ request\ servlet\ request\r\n\ @param\ response\ servlet\ response\r\n\ @throws\ ServletException\ si\ un\ servlet\ en\ especifico\ falla.\r\n\ @throws\ IOException\ si\ hubo\ algun\ tipo\ de\ error\ de\ I/O\ File\r\n
+comment4.params=
+comment4.target=java.lang.String\ getServletInfo()
+comment4.text=\r\n\ Returns\ Una\ breve\ descripcion\ del\ servlet.\r\n\r\n\ @return\ un\ String\ que\ representa\ la\ informacion\ del\ servlet.\r\n
+numComments=5

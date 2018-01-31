@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>    
+    <script type="text/javascript">
+      //despues que se cargan jquery y google charts, indico que package utilizo de google charts.
+      google.charts.load('current', {'packages':['line', 'corechart']});
+      google.charts.setOnLoadCallback(drawChart);//despues que se cargan todos los datos, prosigo.
+
+      function drawChart() {  
+
+        var button = document.getElementById('change-chart');//para cambiar entre materialize y classic line.
+        var chartDiv = document.getElementById('chart_div'); 
+
+        var btnSave = document.getElementById('save-pdf'); //para guardar en pdf.
+
+        //carga de datos desde servlet.
+        var jsonData = $.ajax({
+             url: "ChartServlet",
+             type: 'post',
+             dataType: "json",
+             async: false
+             }).responseText;
+        var chartData=JSON.parse(jsonData);//convierto de json(json "mal formado") a json ok!.
+            
+        var data = new google.visualization.DataTable();//aqui se cargan los datos puros para google charts.
+        data.addColumn('date', 'Mes');
+        data.addColumn('number', "Temperaturas Celsius");
+        data.addColumn('number', "Temperaturas Fahrenheit");
+        //las filas para cada columna- el nombre de columnas no necesitan ser los mismos.
+        for(var i=0;i<chartData.length;i++){
+          var currentObj = chartData[i];
+          data.addRow([new Date(currentObj["fechaTemp"]),currentObj["celsiusTemp"],currentObj["fahTemp"]]);
+            
+        }
+        //parametros materialize(no funciona en todos los navegadores BETA)
+        var materialOptions = {
+          chart: {
+            title: 'Temperaturas nodo 1 arduino, grados Celsius y Fahrenheit'
+          },
+          width: 900,
+          height: 500,
+          series: {
+            // Gives each series an axis name that matches the Y-axis below.
+            0: {axis: 'Celsius'},
+            1: {axis: 'Fahrenheit'}
+          },
+          axes: {
+            // Adds labels to each axis; they don't have to match the axis names.
+            y: {
+              Celsius: {label: 'Temperaturas (Celsius)'},
+              Fahrenheit: {label: 'Temperaturas (Fahrenheit)'}
+            }
+          }
+        };
+      //verison clasica google charts...
+      var classicOptions = {
+        title: 'Temperaturas nodo 1 arduino, grados Celsius y Fahrenheit',
+        width: 900,
+        height: 500,
+        // Gives each series an axis that matches the vAxes number below.
+        series: {
+          0: {targetAxisIndex: 0},
+          1: {targetAxisIndex: 1}
+        },
+        vAxes: {
+          // Adds titles to each axis.
+          0: {title: 'Temperaturas (Celsius)'},
+          1: {title: 'Temperaturas (Fahrenheit)'}
+        },
+        hAxis: {
+          ticks: [new Date(2017, 0), new Date(2017, 1), new Date(2017, 2), new Date(2017, 3),
+                  new Date(2017, 4),  new Date(2017, 5), new Date(2017, 6), new Date(2017, 7),
+                  new Date(2017, 8), new Date(2017, 9), new Date(2017, 10), new Date(2017, 11)
+                 ]
+        },
+        vAxis: {
+          viewWindow: {
+            max: 70
+          }
+        }
+      };
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //dibuja materialize desde button (MATERIALIZE NO SOPORTA MUCHAS FUNCIONALIDADES, COMO EXPORTAR A PNG O PDF...LA VERSION CLASSIC SI)
+      function drawMaterialChart() {
+        btnSave.disabled = true;
+        materialChart = new google.charts.Line(chartDiv);//se especifica graficos de linea(constructor)
+        materialChart.draw(data, materialOptions);
+        button.innerText = 'Cambiar a Classic';
+        button.onclick = drawClassicChart;       
+      }
+      //dibuja version clasica desde button
+      function drawClassicChart() {
+        var classicChart = new google.visualization.LineChart(chartDiv);
+        button.innerText = 'Cambiar a Material';
+        button.onclick = drawMaterialChart;
+        //para exportar a pdf con libreria jquery jspdf
+        google.visualization.events.addListener(classicChart, 'ready', function () {
+          btnSave.disabled = false;            
+        });     
+
+        btnSave.addEventListener('click', function () {
+        var doc = new jsPDF();
+        doc.addImage(classicChart.getImageURI(), 0, 0);
+        doc.save('Reporte Arduino.pdf');
+        }, false);  
+        //NO DIBUJAR ANTES DE HABER CARGADO LOS ESCUCHADORES DE EVENTOS. 
+        classicChart.draw(data, classicOptions);              
+      }
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      //arranco dibujando en materialize
+      drawMaterialChart();     
+    }
+      
+    </script>
+  </head>
+  <body>
+    <button id="change-chart">Change to Classic</button>
+    <input id="save-pdf" type="button" value="Guardar como PDF" disabled />
+    <br><br>
+    <div id="chart_div"></div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=rs
+comment0.target=com.google.gson.JsonObject\ toJson(java.sql.ResultSet)
+comment0.text=\r\n\ Retorna\ un\ objeto\ Json,\ previamente\ serializado\ desde\ un\ objeto\ java,\ con\ GSON.\r\n\ @param\ rs\ Objeto\ ResultSet(con\ registros\ de\ alguna\ base\ de\ datos)\ a\ serializar.\r\n\ @return\ JsonElement\ Retorna\ objeto\ java\ serializado.\r\n\ @throws\ SQLException\ Lanza\ SQLException,\ si\ falla\ la\ consulta.\r\n
+numComments=1

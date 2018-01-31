@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Chartservlet()
+comment0.text=\r\n\ @see\ HttpServlet\#HttpServlet()\r\n
+comment1.params=request\ response
+comment1.target=void\ doGet(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment1.text=\r\n\ Handles\ de\ HTTP\r\n\ <code>GET</code>\ metodo.\r\n\r\n\ @param\ request\ servlet\ request\r\n\ @param\ response\ servlet\ response\r\n\ @throws\ ServletException\ si\ un\ servlet\ en\ especifico\ falla.\r\n\ @throws\ IOException\ si\ hubo\ algun\ tipo\ de\ error\ de\ I/O\ File\r\n
+comment2.params=request\ response
+comment2.target=void\ doPost(javax.servlet.http.HttpServletRequest,\ javax.servlet.http.HttpServletResponse)
+comment2.text=\r\n\ Handles\ de\ HTTP\r\n\ <code>POST</code>\ metodo.\r\n\r\n\ @param\ request\ servlet\ request\r\n\ @param\ response\ servlet\ response\r\n\ @throws\ ServletException\ si\ un\ servlet\ en\ especifico\ falla.\r\n\ @throws\ IOException\ si\ hubo\ algun\ tipo\ de\ error\ de\ I/O\ File\r\n
+numComments=3

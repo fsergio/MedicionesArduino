@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=temp\ typeOfSrc\ context
+comment0.target=com.google.gson.JsonElement\ serialize(Temperature,\ java.lang.reflect.Type,\ com.google.gson.JsonSerializationContext)
+comment0.text=\r\n\ Retorna\ un\ objeto\ Json,\ previamente\ serializado\ desde\ un\ objeto\ java.\r\n\ <code>GET</code>\ y\r\n\ <code>POST</code>\ metodos.\r\n\ @param\ temp\ Objeto\ especifico\ Temperature\ a\ serializar.\r\n\ @param\ typeOfSrc\ Objeto\ fuente(tipo\ de\ clase).\r\n\ @param\ context\ Para\ clases\ anidadas.\r\n\ @return\ JsonElement\ Retorna\ objeto\ java\ serializado.\r\n
+numComments=1

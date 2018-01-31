@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	
+	<!-- datatable CSS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	
+	<!-- datatable buttons css -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
+	
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- import datatable. Siempre despues de haber importado el jquery -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	
+	<!-- import buttons datatable -->
+	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+
+	<!-- import select datatable -->
+	<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
+	
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta charset="UTF-8">
+	
+	<style>
+		#alert_box {
+			padding-left: 300px;
+		}
+		
+		.icon_style{
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			font-size: 20px;
+			color: white;
+			cursor:pointer; 
+		}
+		
+		.row {
+			margin-bottom: 0px;
+		}
+	</style>
+  </head>
+
+  <body>
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID TEMPERATURA</th>
+                    <th>MEDICION CELSIUS</th>
+                    <th>MEDICION FAHRENHEIT</th>
+                    <th>FECHA</th>
+					<!-- <th width="10%">Editar</th>
+					<th width="10%">Eliminar</th>-->
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>ID TEMPERATURA</th>
+                    <th>MEDICION CELSIUS</th>
+                    <th>MEDICION FAHRENHEIT</th>
+                    <th>FECHA</th>
+					<!-- <th width="10%">Editar</th>
+					<th width="10%">Eliminar</th>-->
+                </tr>
+            </tfoot>
+        </table>
+		<div id="events"></div>
+  </body>
+  
+  <!-- Modal Agregar row -->
+  <div id="modalAdd" class="modal">
+    <div class="modal-content">
+      <h4 style="text-align: center;">Temperaturas - Agregar Row</h4>
+      <div class="row">
+		<form class="col s12">
+		  <div class="row">
+			<div class="input-field col s12">
+			  <input type="text" class="validate" id="celsius" required>
+			  <label for="celsius">Medición Celsius (*)</label>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="input-field col s12">
+			  <input id="fahrenheit" type="text" class="validate" required>
+			  <label for="fahrenheit">Medición Fahrenheit (*)</label>
+			</div>
+		  </div>
+		  <!-- INICIO ALERT -->
+				<div class="row" id="alert_box" hidden>
+				  <div class="col s6 m10">
+					<div class="card red darken-1">
+					  <div class="row">
+						<div class="col s12 m10">
+						  <div id="message" class="card-content white-text"></div>
+						</div>
+					  <div class="col s12 m2">
+						<i class="small material-icons icon_style" id="alert_close" aria-hidden="true">close</i>
+					  </div>
+					</div>
+				   </div>
+				  <!--</div>-->
+				</div>
+			<!-- FIN ALERT -->
+		</form>
+	  </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action waves-effect waves-green btn-flat" id="btnAdd" onclick="getValuesAdd()">Agregar</a>
+	  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="closeModalAdd()">Cerrar</a>
+    </div>
+  </div>
+  <!-- Fin Modal Agregar row -->
+  
+  <!-- Modal Editar row -->
+  <div id="modalUpd" class="modal">
+    <div class="modal-content">
+      <h4 style="text-align: center;">Temperaturas - Editar Row</h4>
+      <div class="row">
+		<form class="col s12">
+		  <div class="row">
+			<div class="input-field col s12">
+			  <input type="text" class="validate" id="id_temp_upd" hidden>
+			  <input type="text" class="validate" id="celsius_upd">
+			  <label for="celsius_upd">Medición Celsius</label>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="input-field col s12">
+			  <input id="fahrenheit_upd" type="text" class="validate">
+			  <label for="fahrenheit_upd">Medición Fahrenheit</label>
+			</div>
+		  </div>
+		</form>
+	  </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="getValuesUpd()">Editar</a>
+	  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="closeModalUpd()">Cerrar</a>
+    </div>
+  </div>
+  <!-- Fin Modal Editar row -->
+</html>
+
+<script type="text/javascript">
+
+$('.modal').modal({
+      dismissible: false, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        alert("Ready");
+        console.log(modal, trigger);
+      },
+      complete: function() { alert('Closed'); } // Callback for Modal close
+    }
+  );
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('.modal').modal();
+	var id_tempUpd;
+	var celsiusUpd;
+	var fahrenheitUpd;
+	var fecha_tempUpd;
+	var rows = [];
+	var rowsUpd = "";
+	var rowsIds = "";
+	
+    var table = $('#example').DataTable({
+		select: {
+			style: 'multi'
+		},
+		dom: 'Bfrtip',
+        buttons: [
+			
+            {
+                text: 'Eliminar row(s)',
+                action: function ( e, dt, node, config ) {
+					rowIds = rows.toString();
+					console.log(rowIds);
+					$.ajax({
+                                url: 'deleteTemp',
+                                type: 'post',
+								dataType: 'json',
+								data: {rows: rowIds},
+                                success: function(response) {
+									$('#alert_box').removeAttr('hidden');
+									console.log(response);
+									if (response['Result'] == 'OK'){
+										$('#message').html('<p>Se ha(n) eliminado el/los registro(s) satisfactoriamente.</p>')
+										table.ajax.reload();
+									} else {
+										$('#message').html('<p>Se produjo un error al intentar elimiar el/los registro(s).</p>')
+									}
+                                }
+                            })/// close ajax
+                } // close action
+            }, // close corchete buttons
+			
+			{
+                text: 'Agregar row',
+				action: function ( e, dt, node, config ) {
+					$('#modalAdd').modal();
+					$('#modalAdd').modal('open');
+				}
+            },
+
+			{
+				text: 'Editar row',
+				action: function ( e, dt, node, config ) {
+					$('#modalUpd').modal();
+					$('#modalUpd').modal('open');
+					$('#id_temp_upd').val(id_tempUpd);
+					$('#celsius_upd').val(celsiusUpd);
+					$('#fahrenheit_upd').val(fahrenheitUpd);
+				}
+			},
+			'copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5'
+        ],
+		//"bProcessing:" true,
+        "ajax": "listMediciones",
+		"language": {
+			"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		},
+        "columns": [
+                { "data": "id_temp" },
+                { "data": "celsius_temp" },
+                { "data": "fah_temp" },
+                { "data": "fecha_temp" }
+        ]		
+    });
+	
+	table.on('select.dt', function() {
+	  var array = "";
+	  var arrayUpd = "update/";
+		$.each(table.rows('.selected').data(), function() {
+			   array = array+this["id_temp"]+"/";
+			   id_tempUpd = this["id_temp"];
+			   celsiusUpd = this["celsius_temp"];
+			   fahrenheitUpd = this["fah_temp"];
+           }); 
+		rows = array; 
+		//rowsUpd = arrayUpd;
+	  })
+	  
+	  .on( 'deselect', function ( e, dt, type, indexes ) {
+		var arrayDes = "";
+			$.each(table.rows('.deselected').data(), function() {
+            arrayDes = arrayDes+this["id_temp"]+"/";
+			console.log(arrayDes);
+			console.log("1");
+        });
+		rowsDes = arrayDes;
+		console.log(rowsDes);
+		})
+});
+
+function closeModalAdd(){
+	$('#modalAdd').modal('close'); 
+}
+
+function closeModalUpd(){
+	$('#modalUpd').modal('close'); 
+}
+
+function getValuesAdd(){
+var celsius = $('#celsius').val();
+var fahrenheit = $('#fahrenheit').val();
+if (celsius == '' || fahrenheit == '' ){
+	$('#alert_box').removeAttr('hidden');
+	$('#message').html('<p>Debe completar los campos obligatorios.</p>')
+} else {
+
+		var data = "insert/";
+		var celsius;
+		var fahrenheit;
+		celsius = $("#celsius").val();
+		fahrenheit = $("#fahrenheit").val();
+		data = data + celsius + "/" + fahrenheit;
+		console.log(data);
+		$.ajax({
+			url: 'addTemp',
+			type: 'post',
+			dataType: 'json',
+			data: {data: data},
+			success: function(response) {
+				console.log(response);
+				if (response['Result'] == 'OK'){
+					$('#message').html('<p>Se agregó el registro satisfactoriamente.</p>')
+					$('#example').DataTable().ajax.reload();
+					//table.ajax.reload();
+				} else {
+					$('#message').html('<p>Se produjo un error al intentar agregar el registro.</p>')
+				}
+			}
+		});
+	}
+	$('#modalAdd').modal('close'); 
+}
+
+function getValuesUpd(){
+var celsius = $('#celsius').val();
+var fahrenheit = $('#fahrenheit').val();
+
+var rowsUpd = "update/";
+var id_temp;
+var celsius_temp;
+var fahrenheit_temp;
+
+id_temp = $('#id_temp_upd').val();
+celsius_temp = $('#celsius_upd').val();
+fahrenheit_temp = $('#fahrenheit_upd').val();
+
+
+rowsUpd = rowsUpd + id_temp + "/" + celsius_temp + "/" + fahrenheit_temp + "/";
+	$.ajax({
+		url: 'addTemp',
+		type: 'post',
+		dataType: 'json',
+		data: {data:rowsUpd},
+		success: function(response) {
+			if (response['Result'] == 'OK'){
+				$('#message').html('<p>Se actualizó el registro satisfactoriamente.</p>')
+				$('#example').DataTable().ajax.reload();
+				//table.ajax.reload();
+			} else {
+				$('#message').html('<p>Se produjo un error al intentar actualizar el registro.</p>')
+			}
+		}
+	});
+}
+</script>

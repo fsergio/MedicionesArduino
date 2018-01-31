@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=JettyServer()
+comment1.params=e
+comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment2.params=e
+comment2.target=void\ windowClosing(java.awt.event.WindowEvent)
+comment3.params=
+comment3.target=boolean\ doStart()
+comment3.text=\r\n\ Inicia\ el\ servidor\ y\ una\ conexion\ con\ Mysql.\r\n\ @return\ True\ Si\ se\ ha\ iniciado\ el\ servidor,\ con\ exito.\r\n\ @throws\ Exception\ Si\ falla\ el\ inicio\ del\ servidor.\r\n
+comment4.params=
+comment4.target=boolean\ doStop()
+comment4.text=\r\n\ Detiene\ el\ servidor\ y\ la\ conexion\ con\ Mysql.\r\n\ @return\ false\ Si\ no\ se\ ha\ podido\ detener\ el\ servidor,\ con\ exito.\r\n\ @throws\ Exception\ Si\ no\ se\ ha\ podido\ detener\ el\ servidor,\ con\ exito,\ o\ desconexion\ con\ Mysql.\r\n
+comment5.params=label
+comment5.target=void\ updateLabel(java.lang.String)
+comment5.text=\r\n\ Actualiza\ el\ boton,\ de\ interfaz\ grafica\ del\ servidor.\r\n\ @param\ label\ String\ par\ aactualizar.\r\n
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+comment6.text=\r\n\ Inicia\ la\ aplicacion,\ creando\ una\ nueva\ instancia\ del\ servidor\ jetty\ y\ mysql.\r\n
+numComments=7
